@@ -1,0 +1,41 @@
+@charset "utf-8";
+/* CSS Documentu */
+
+.masonry-item {
+    float: left;
+    position: relative;
+    line-height: 1em;
+}
+
+.grid-sizer { width: 24%; }
+.gutter-sizer { width: 1%; }
+.masonry-item { width: 24%; }
+.attribution {background: #efefef; text-align: center; padding:10px; width:100%; margin-bottom:10px; display:block;}
+
+@media screen and (max-width: 1224px) {
+  /* 10 columns for larger screens */
+  .grid-sizer { width: 33.33%; }
+  .masonry-item { width: 33.33%; }
+}
+ 
+@media screen and (max-width: 720px) {
+  /* 10 columns for larger screens */
+  .grid-sizer { width: 50%; }
+  .masonry-item { width: 50%; }
+}
+ 
+@media screen and (max-width: 480px) {
+  /* 10 columns for larger screens */
+  .grid-sizer { width: 100%; }
+  .masonry-item { width: 100%; }
+}
+
+.masonry-item img {
+    max-width: 100%;
+    margin: 0;
+    display: block;
+}
+
+.masonry-item img:after {
+    clear:both;
+}

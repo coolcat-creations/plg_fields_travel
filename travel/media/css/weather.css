@@ -1,0 +1,28 @@
+ .weather-container {
+	 background: #efefef;
+	 margin:15px 0;
+ }
+
+ .weather-container h4,
+ .weather-date {
+	 text-transform: uppercase;
+	 font-size:1.2em;
+	 letter-spacing: 2px;
+ }
+
+ .weather-time {
+	 font-weight:bold;
+ }
+
+ .weather-left,
+ .weather-right {
+	 padding:15px;
+ }
+
+ .hours {
+	 font-size:0.9em;
+ }
+
+ .hours .row:nth-child(even) {
+	 background: #dbdbdb;
+ }
