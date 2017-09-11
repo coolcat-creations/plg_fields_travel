@@ -1,7 +1,7 @@
 <?php
 /**
  * @package     Joomla.Plugin
- * @subpackage  Fields.Uikitgallery
+ * @subpackage  Fields.Travel
  *
  * @copyright   Copyright (C) 2017 JUGN.
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
