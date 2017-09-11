@@ -16,12 +16,8 @@
 		<folder>language</folder>
 		<folder>params</folder>
 		<folder>tmpl</folder>
+		<folder>layouts</folder>
 	</files>
-	
-	<files folder="field" destination="layouts">
-	<folder>field</folder>
-	</files>
-
 	<media destination="plg_fields_travel" folder="media">
 		<folder>css</folder>
 		<folder>js</folder>
