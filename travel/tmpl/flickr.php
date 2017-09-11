@@ -30,15 +30,15 @@ $doc->addStyleSheet('media/plg_fields_travel/css/magnific-popup.css');
 /* load the script for the masonry effect */
 $doc->addScript('media/plg_fields_travel/js/masonry.pkgd.min.js',array(),array('async'=>'async'));
 
-/* load the imageloaded script for the masonry effect */
-$doc->addScript('media/plg_fields_travel/js/imagesloaded.js',array(),array('async'=>'async'));
-
 /* load the script for the lightbox */
 $doc->addScript('media/plg_fields_travel/js/jquery.magnific-popup.js');
 
+/* load the imageloaded script for the masonry effect */
+$doc->addScript('media/plg_fields_travel/js/imagesloaded.js',array(),array('async'=>'async'));
+
 
 /* Fill in the gaps in adress to make a proper call in the url */
-$address = str_replace(" ", "%20", $field->value);
+$address = urlencode($field->value);
 
 /* How many images should be loaded */
 $imgnum = $field->fieldparams['imgnum'];
@@ -47,8 +47,28 @@ $imgnum = $field->fieldparams['imgnum'];
 /* get the API Key that is set in the global params */
 $key = $this->params['flickrapi'];
 
+if (!$key)
+{
+	JFactory::getApplication()->enqueueMessage(JText::_('PLG_TRAVEL_DEFINE_FLICKRKEY'), 'error');
+	return;
+}
+
+/* Find out the place id */
+$placeurl = "https://api.flickr.com/services/rest/?method=flickr.places.find&api_key=$key&query=$address&format=json&nojsoncallback=1";
+
+/* Getting the JSON DATA for Place */
+$placecall = curl_init();
+curl_setopt($placecall,CURLOPT_URL,$placeurl);
+curl_setopt($placecall,CURLOPT_RETURNTRANSFER,true);
+
+$json_output_place = curl_exec($placecall);
+
+$place = json_decode($json_output_place);
+
+$place_id = $place->places->place[0]->place_id;
+
 /* setting up the call url */
-$url = "https://api.flickr.com/services/rest/?format=json&api_key=$key&method=flickr.photos.search&sort=relevance&text=$address&nojsoncallback=1&per_page=$imgnum&media=photos&content_type=1&extras=url_l,tags,owner_name,description";
+$url = "https://api.flickr.com/services/rest/?format=json&api_key=$key&method=flickr.photos.search&sort=interestingness-desc&nojsoncallback=1&per_page=$imgnum&media=photos&place_id=$place_id&accuracy=10&content_type=1&extras=url_l,tags,owner_name,description";
 
 /* Getting the JSON DATA */
 $ch = curl_init();
@@ -56,6 +76,7 @@ curl_setopt($ch,CURLOPT_URL,$url);
 curl_setopt($ch,CURLOPT_RETURNTRANSFER,true);
 
 $json_output=curl_exec($ch);
+
 $images = json_decode($json_output);
 
 $images = $images->photos->photo;
