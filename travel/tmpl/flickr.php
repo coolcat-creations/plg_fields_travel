@@ -114,20 +114,22 @@ $images = $images->photos->photo;
 
 <script>
 jQuery.noConflict();
-	jQuery( document ).ready(function( $ ) {
-			// init Masonry after all images have loaded
-			grid.masonry({
-				itemSelector: '.masonry-item',
-				columnWidth: '.grid-sizer',
-				gutter: '.gutter-sizer'
+jQuery( document ).ready(function($) {
 
-			});
+	var grid = $('.masonry').imagesLoaded( function() {
+		// init Masonry after all images have loaded
+		grid.masonry({
+			itemSelector: '.masonry-item',
+			columnWidth: '.grid-sizer',
+			gutter: '.gutter-sizer'
 
 		});
 
-		$('.travelimage').magnificPopup({type:'image'});
-
 	});
+
+	$('.travelimage').magnificPopup({type:'image'});
+
+});
 
 </script>
 
