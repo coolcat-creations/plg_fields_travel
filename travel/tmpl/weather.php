@@ -25,6 +25,12 @@ $doc->addStyleSheet('media/plg_fields_travel/css/weather.css');
 /* get the API Key that is set in the global params */
 $key = $this->params['apixuapi'];
 
+if (!$key)
+{
+	JFactory::getApplication()->enqueueMessage(JText::_('PLG_TRAVEL_DEFINE_APIXUKEY'), 'error');
+	return;
+}
+
 /* How many images should be loaded */
 $forecast_days = $field->fieldparams['forecastdays'];
 
