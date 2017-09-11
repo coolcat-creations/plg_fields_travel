@@ -113,9 +113,8 @@ $images = $images->photos->photo;
 <?php /* We add the script at the end */ ?>
 
 <script>
-	(function($) {
-
-		var grid = $('.masonry').imagesLoaded( function() {
+jQuery.noConflict();
+	jQuery( document ).ready(function( $ ) {
 			// init Masonry after all images have loaded
 			grid.masonry({
 				itemSelector: '.masonry-item',
@@ -128,7 +127,7 @@ $images = $images->photos->photo;
 
 		$('.travelimage').magnificPopup({type:'image'});
 
-	})(jQuery);
+	});
 
 </script>
 
