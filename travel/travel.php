@@ -15,17 +15,4 @@ JLoader::import('components.com_fields.libraries.fieldsplugin', JPATH_ADMINISTRA
 class PlgFieldsTravel extends FieldsPlugin
 {
 
-	public function onCustomFieldsPrepareDom($field, DOMElement $parent, JForm $form) {
-
-
-		$FieldNode = parent::onCustomFieldsPrepareDom($field, $parent, $form);
-
-		if (!$FieldNode) {
-			return $FieldNode;
-		}
-
-		return $FieldNode;
-	}
-
-
 }
