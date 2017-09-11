@@ -3,5 +3,7 @@ Joomla! CustomField - Displays an address, weather, map or flickr gallery from u
 
 ## DOCS WILL FOLLOW
 
-## current issue:
-- Layouts don't copy to the layouts folder, please copy layouts/field fold manually to Joomlaroot/layouts until fixed
+## ToDo:
+- file extension package for the layouts (move them now manually to the layouts folder)
+- translations
+- optimize curl call (cache?)
