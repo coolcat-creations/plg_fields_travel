@@ -28,7 +28,7 @@ if (is_array($templates) || is_object($templates) && $field->fieldparams['displa
 		/* load the templates */
 		foreach ($templates as $template)
 		{
-			$tmplfile = $template . '.php';
+			$tmplfile = 'subtemplates/' . $template . '.php';
 			include $tmplfile;
 		}
 }
