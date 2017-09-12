@@ -62,6 +62,17 @@
 			</field>
 
 			<field
+					name="perhour"
+					label="PLG_TRAVEL_WEATHER_PER_HOUR"
+					type="list"
+					default="1"
+					showon="loadtemplates:weather"
+			>
+				<option value="1">Yes</option>
+				<option value="0">No</option>
+			</field>
+
+			<field
 					name="dateformat"
 					label="PLG_TRAVEL_DATEFORMAT"
 					type="list"

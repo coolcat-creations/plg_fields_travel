@@ -28,6 +28,7 @@ $key = $this->params['apixuapi'];
 if (!$key)
 {
 	JFactory::getApplication()->enqueueMessage(JText::_('PLG_TRAVEL_DEFINE_APIXUKEY'), 'error');
+
 	return;
 }
 
@@ -36,6 +37,9 @@ $forecast_days = $field->fieldparams['forecastdays'];
 
 /* Fahrenheit or Celcius */
 $degrees = $field->fieldparams['degrees'];
+
+/* Show weather per hour or not */
+$perhour = $field->fieldparams['perhour'];
 
 /* Dateformat */
 $dateformat = $field->fieldparams['dateformat'];
@@ -87,87 +91,93 @@ echo '<h3 class="weather-left-menu__header">' . JTEXT::_('PLG_TRAVEL_WEATHER_FOR
 	foreach ($days as $day)
 	{ ?>
 
-        <div
-                class="tab-pane fade <?php echo $contentCounter <= 0 ? 'show active' : ''; ?>"
-                id="tab-<?php echo $day->date; ?>"
-                role="tabpanel">
+    <div
+            class="tab-pane fade <?php echo $contentCounter <= 0 ? 'show active' : ''; ?>"
+            id="tab-<?php echo $day->date; ?>"
+            role="tabpanel">
 
 
-            <div id="weather" class="weather-container">
-                <div class="row">
-                    <div class="col-6">
-                        <div class="weather-left">
+        <div id="weather" class="weather-container">
+        <div class="row">
+        <div class="col-6">
+            <div class="weather-left">
 
 
-                            <div class="weather-condition">
+                <div class="weather-condition">
 
-                                <img src="<?php echo $day->day->condition->icon; ?>"
-                                     width="64" height="64" alt="Weather in <?php echo $value; ?>"
-                                     class="weather-condition">
-                                <p><?php echo $day->day->condition->text; ?></p>
+                    <img src="<?php echo $day->day->condition->icon; ?>"
+                         width="64" height="64" alt="Weather in <?php echo $value; ?>"
+                         class="weather-condition">
+                    <p><?php echo $day->day->condition->text; ?></p>
 
-                                <span class="weather-temp">
+                    <span class="weather-temp">
                         <?php echo JTEXT::_('PLG_TRAVEL_WEATHER_AVERAGE'); ?> <?php echo($degrees == 'C' ? $day->day->avgtemp_c . '&deg;C' : $day->day->avgtemp_f . '&deg;F'); ?>
-                                    <br>
+                        <br>
                     </span>
 
-                                <span class="weather-temp-average">
+                    <span class="weather-temp-average">
 					<?php echo JTEXT::_('PLG_TRAVEL_WEATHER_BETWEEN'); ?>
 					<?php echo($degrees == 'C' ?
 						$day->day->mintemp_c . '&deg;C ' . JTEXT::_('PLG_TRAVEL_WEATHER_AND') . ' ' . $day->day->maxtemp_c . '&deg;C'
 						: $day->day->mintemp_f . '&deg;F ' . JTEXT::_('PLG_TRAVEL_WEATHER_AND') . ' ' . $day->day->maxtemp_f . '&deg;F'); ?>
                     </span>
-                            </div>
+                </div>
 
-                            <div class="weather-astro">
-                                <p class="weather-sun">
-									<?php echo JTEXT::_('PLG_TRAVEL_WEATHER_SUNRISE'); ?> <?php echo $day->astro->sunrise; ?>
-                                    /
-									<?php echo JTEXT::_('PLG_TRAVEL_WEATHER_SUNSET'); ?> <?php echo $day->astro->sunset; ?>
-                                    /
-									<?php echo JTEXT::_('PLG_TRAVEL_WEATHER_WIND'); ?> <?php echo($wind == 'K' ? $day->day->maxwind_kph . 'kpH' : $day->day->maxwind_mph . 'mpH'); ?>
-                                </p>
-                                <p class="weather-wind">
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-6">
-                        <div class="weather-right">
-                            <h4><?php echo JTEXT::_('PLG_TRAVEL_WEATHER_HOURS_OVERVIEW'); ?></h4>
-
-                            <div class="hours">
-								<?php foreach ($day->hour as $hr)
-								{
-									?>
-                                    <div class="row">
-                                        <div class="col-2">
-                                            <img src="<?php echo $hr->condition->icon; ?>" width="42" height="42"
-                                                 alt="<?php echo $hr->time; ?>">
-                                        </div>
-                                        <div class="col-10 hourdetails">
-                                    <span class="weather-time">
-                                    <?php echo JTEXT::_('PLG_TRAVEL_WEATHER_TIME'); ?><?php echo date('H:i', strtotime($hr->time)); ?></span><br>
-											<?php echo JTEXT::_('PLG_TRAVEL_WEATHER_TEMPERATURE'); ?> <?php echo($degrees == 'C' ? $hr->temp_c . '&deg;C' : $hr->temp_f . '&deg;F'); ?>
-                                            /
-											<?php echo JTEXT::_('PLG_TRAVEL_WEATHER_WIND'); ?> <?php echo($wind == 'K' ? $hr->wind_kph . ' kpH' : $hr->wind_mph . ' mpH'); ?>
-                                            /
-											<?php echo JTEXT::_('PLG_TRAVEL_WEATHER_HUMIDITY'); ?> <?php echo $hr->humidity; ?>
-                                            %
-                                        </div>
-
-                                    </div>
-
-									<?php
-								}
-
-								?>
-                            </div>
-                        </div>
-                    </div>
+                <div class="weather-astro">
+                    <p class="weather-sun">
+						<?php echo JTEXT::_('PLG_TRAVEL_WEATHER_SUNRISE'); ?> <?php echo $day->astro->sunrise; ?>
+                        /
+						<?php echo JTEXT::_('PLG_TRAVEL_WEATHER_SUNSET'); ?> <?php echo $day->astro->sunset; ?>
+                        /
+						<?php echo JTEXT::_('PLG_TRAVEL_WEATHER_WIND'); ?> <?php echo($wind == 'K' ? $day->day->maxwind_kph . 'kpH' : $day->day->maxwind_mph . 'mpH'); ?>
+                    </p>
+                    <p class="weather-wind">
+                    </p>
                 </div>
             </div>
+        </div>
+
+		<?php if ($perhour == '1') : ?>
+
+
+        <div class="col-6">
+            <div class="weather-right">
+                <h4><?php echo JTEXT::_('PLG_TRAVEL_WEATHER_HOURS_OVERVIEW'); ?></h4>
+
+                <div class="hours">
+					<?php foreach ($day->hour as $hr)
+					{
+						?>
+                        <div class="row">
+                            <div class="col-2">
+                                <img src="<?php echo $hr->condition->icon; ?>" width="42" height="42"
+                                     alt="<?php echo $hr->time; ?>">
+                            </div>
+                            <div class="col-10 hourdetails">
+                                    <span class="weather-time">
+                                    <?php echo JTEXT::_('PLG_TRAVEL_WEATHER_TIME'); ?><?php echo date('H:i', strtotime($hr->time)); ?></span><br>
+								<?php echo JTEXT::_('PLG_TRAVEL_WEATHER_TEMPERATURE'); ?> <?php echo($degrees == 'C' ? $hr->temp_c . '&deg;C' : $hr->temp_f . '&deg;F'); ?>
+                                /
+								<?php echo JTEXT::_('PLG_TRAVEL_WEATHER_WIND'); ?> <?php echo($wind == 'K' ? $hr->wind_kph . ' kpH' : $hr->wind_mph . ' mpH'); ?>
+                                /
+								<?php echo JTEXT::_('PLG_TRAVEL_WEATHER_HUMIDITY'); ?> <?php echo $hr->humidity; ?>
+                                %
+                            </div>
+
+                        </div>
+
+						<?php
+					}
+
+					?>
+                </div>
+            </div>
+        </div>
+
+        <?php endif; ?>
+            
+        </div>
+        </div>
         </div>
 
 		<?php $contentCounter++;
