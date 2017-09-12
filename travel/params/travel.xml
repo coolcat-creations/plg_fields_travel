@@ -3,7 +3,7 @@
 	<fields name="fieldparams">
 		<fieldset name="fieldparams">
 			<field name="loadtemplates" type="list" multiple="true" default="" label="Load Template(s)" description="">
-				<option value="address">address</option>
+				<option value="address">Address</option>
 				<option value="map">Map</option>
 				<option value="weather">Weather</option>
 				<option value="flickr">Flickr</option>
@@ -22,7 +22,8 @@
 			       min="1"
 			       max="500"
 			       step="1"
-			       showon="loadtemplates:flickr"/>
+			       showon="loadtemplates:flickr"
+			 />
 
 			<field type="spacer" name="apixuheader"
 			       label="PLG_TRAVEL_WEATHEROPTIONS"
@@ -37,41 +38,41 @@
 			       min="1"
 			       max="10"
 			       step="1"
-			       showon="loadtemplates:weather"/>
+			       showon="loadtemplates:weather"
+			 />
 
 			<field
-					name="degrees"
-					label="PLG_TRAVEL_WEATHER_DEGREES"
-					type="list"
-					default="C"
-					showon="loadtemplates:weather"
-			>
-			<option value="C">Celsius</option>
+				name="degrees"
+				label="PLG_TRAVEL_WEATHER_DEGREES"
+				type="list"
+				default="C"
+				showon="loadtemplates:weather"
+				>
+				<option value="C">Celsius</option>
 				<option value="F">Fahrenheit</option>
 			</field>
 
 			<field
-					name="wind"
-					label="PLG_TRAVEL_WEATHER_WIND"
-					type="list"
-					default="K"
-					showon="loadtemplates:weather"
-			>
+				name="wind"
+				label="PLG_TRAVEL_WEATHER_WIND"
+				type="list"
+				default="K"
+				showon="loadtemplates:weather"
+				>
 				<option value="K">Kilometer</option>
 				<option value="M">Miles</option>
 			</field>
 
 			<field
-					name="dateformat"
-					label="PLG_TRAVEL_DATEFORMAT"
-					type="list"
-					default="dd . mm . YY"
-					showon="loadtemplates:weather"
-			>
+				name="dateformat"
+				label="PLG_TRAVEL_DATEFORMAT"
+				type="list"
+				default="dd . mm . YY"
+				showon="loadtemplates:weather"
+				>
 				<option value="d. m. Y">d. m. Y</option>
 				<option value="d. M Y">d. M Y</option>
 				<option value="m / d / y">m / d / y</option>
-
 			</field>
 
 			<field type="spacer" name="Map"
@@ -81,11 +82,12 @@
 			<field name="mapheight"
 			       type="number"
 			       default="500"
-			       label="Map height"
+			       label="Map Height"
 			       description="in px"
 			       min="100"
 			       step="100"
-			       showon="loadtemplates:map"/>
+			       showon="loadtemplates:map"
+			/>
 
 		</fieldset>
 	</fields>
