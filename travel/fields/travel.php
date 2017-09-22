@@ -17,11 +17,10 @@ class JFormFieldTravel extends JFormFieldText {
 	protected $type = 'Travel';
 
 
-	public function setup (SimpleXMLElement $element, $value, $group = null)
+	public function getInput()
 	{
-
 		$doc = JFactory::getDocument();
-		$doc->addScript('https://cdn.jsdelivr.net/npm/places.js@1.4.15', array(), array('defer'=> 'defer' ));
+		$doc->addScript('https://cdn.jsdelivr.net/npm/places.js@1.4.15', array(), array('defer' => 'defer'));
 		$doc->addScriptDeclaration('document.addEventListener("DOMContentLoaded", function(event) {
 							var placesAutocomplete = places({
 								container: document.querySelector(".address-input")
@@ -31,13 +30,11 @@ class JFormFieldTravel extends JFormFieldText {
 
 						});');
 
-		$element['class'] = 'address-input';
-		$element['hint'] = 'PLG_FIELDS_TRAVEL_DESTINATION';
+		$placeholder = JText::_('PLG_FIELDS_TRAVEL_DESTINATION');
 
+		$field = '<input name="' . $this->name . '" id="' . $this->id . '" class="address-input" placeholder="' . $placeholder . '">';
 
-		$return = parent::setup($element, $value, $group);
-		return $return;
+		return $field;
 	}
-
 }
 
