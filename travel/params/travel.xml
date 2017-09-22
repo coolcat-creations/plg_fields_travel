@@ -2,44 +2,58 @@
 <form>
 	<fields name="fieldparams">
 		<fieldset name="fieldparams">
-			<field name="loadtemplates" type="list" multiple="true" default="" label="Load Template(s)" description="">
+			<field
+				name="loadtemplates"
+				type="list"
+				multiple="true"
+				default=""
+				label="Load Template(s)"
+				description=""
+				>
 				<option value="address">Address</option>
 				<option value="map">Map</option>
 				<option value="weather">Weather</option>
 				<option value="flickr">Flickr</option>
 			</field>
 
-			<field type="spacer" name="flickrhead"
-			       label="PLG_TRAVEL_FLICKROPTIONS"
-			       showon="loadtemplates:flickr"/>
+			<field
+				type="spacer"
+				name="flickrhead"
+				label="PLG_TRAVEL_FLICKROPTIONS"
+				showon="loadtemplates:flickr"
+			/>
+
+			<field
+				name="imgnum"
+				type="number"
+				default="10"
+				label="Choose an number of images to display"
+				description=""
+				min="1"
+				max="500"
+				step="1"
+				showon="loadtemplates:flickr"
+			/>
+
+			<field
+				type="spacer"
+				name="apixuheader"
+				label="PLG_TRAVEL_WEATHEROPTIONS"
+				showon="loadtemplates:weather"
+			/>
 
 
-			<field name="imgnum"
-			       type="number"
-			       default="10"
-			       label="Choose an number of images to display"
-			       description=""
-			       min="1"
-			       max="500"
-			       step="1"
-			       showon="loadtemplates:flickr"
-			 />
-
-			<field type="spacer" name="apixuheader"
-			       label="PLG_TRAVEL_WEATHEROPTIONS"
-			       showon="loadtemplates:weather"/>
-
-
-			<field name="forecastdays"
-			       type="number"
-			       default="3"
-			       label="Choose an number of forecast days to display"
-			       description=""
-			       min="1"
-			       max="10"
-			       step="1"
-			       showon="loadtemplates:weather"
-			 />
+			<field
+				name="forecastdays"
+				type="number"
+				default="3"
+				label="Choose an number of forecast days to display"
+				description=""
+				min="1"
+				max="10"
+				step="1"
+				showon="loadtemplates:weather"
+			/>
 
 			<field
 				name="degrees"
@@ -64,6 +78,17 @@
 			</field>
 
 			<field
+				name="perhour"
+				label="PLG_TRAVEL_WEATHER_PER_HOUR"
+				type="list"
+				default="1"
+				showon="loadtemplates:weather"
+				>
+				<option value="1">Yes</option>
+				<option value="0">No</option>
+			</field>
+
+			<field
 				name="dateformat"
 				label="PLG_TRAVEL_DATEFORMAT"
 				type="list"
@@ -75,18 +100,22 @@
 				<option value="m / d / y">m / d / y</option>
 			</field>
 
-			<field type="spacer" name="Map"
-			       label="PLG_TRAVEL_MAPOPTIONS"
-			       showon="loadtemplates:map"/>
+			<field
+				type="spacer"
+				name="Map"
+				label="PLG_TRAVEL_MAPOPTIONS"
+				showon="loadtemplates:map"
+			/>
 
-			<field name="mapheight"
-			       type="number"
-			       default="500"
-			       label="Map Height"
-			       description="in px"
-			       min="100"
-			       step="100"
-			       showon="loadtemplates:map"
+			<field
+				name="mapheight"
+				type="number"
+				default="500"
+				label="Map Height"
+				description="in px"
+				min="100"
+				step="100"
+				showon="loadtemplates:map"
 			/>
 
 		</fieldset>
