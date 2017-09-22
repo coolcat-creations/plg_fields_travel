@@ -25,9 +25,6 @@ class JFormFieldTravel extends JFormFieldText {
 							var placesAutocomplete = places({
 								container: document.querySelector(".address-input")
 							});
-							
-							placesAutocomplete.on("change", e => console.log(e.suggestion));
-
 						});');
 
 		$placeholder = JText::_('PLG_FIELDS_TRAVEL_DESTINATION');
