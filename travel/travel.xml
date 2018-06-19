@@ -43,6 +43,12 @@
 				       label="Apixu API KEY"
 				       filter="raw"
 				/>
+				<field name="opencageapi"
+				       type="text"
+				       default=""
+				       label="Open Cage API KEY"
+				       filter="raw"
+				/>
 			</fieldset>
 		</fields>
 	</config>
