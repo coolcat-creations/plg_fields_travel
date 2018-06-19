@@ -38,7 +38,7 @@ $doc->addScript('media/plg_fields_travel/js/imagesloaded.js',array(),array('asyn
 
 
 /* Fill in the gaps in adress to make a proper call in the url */
-$address = urlencode($field->value);
+$address = JFilterOutput::stringURLSafe($field->value);
 
 /* How many images should be loaded */
 $imgnum = $field->fieldparams['imgnum'];

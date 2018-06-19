@@ -48,7 +48,7 @@ $dateformat = $field->fieldparams['dateformat'];
 $wind = $field->fieldparams['wind'];
 
 /* Fill in the gaps in adress to make a proper call in the url */
-$address = str_replace(" ", "%20", $field->value);
+$address = JFilterOutput::stringURLSafe($field->value);
 
 /* setting up the call url */
 $url = "http://api.apixu.com/v1/forecast.json?key=$key&q=$address&days=$forecast_days&=";
@@ -175,7 +175,7 @@ echo '<h3 class="weather-left-menu__header">' . JTEXT::_('PLG_TRAVEL_WEATHER_FOR
         </div>
 
         <?php endif; ?>
-            
+
         </div>
         </div>
         </div>

@@ -45,7 +45,7 @@ $dateformat = $field->fieldparams['dateformat'];
 $wind = $field->fieldparams['wind'];
 
 /* Fill in the gaps in adress to make a proper call in the url */
-$address = str_replace(" ", "%20", $field->rawvalue);
+$address = JFilterOutput::stringURLSafe($field->rawvalue);
 
 /* setting up the call url */
 $url = "http://api.apixu.com/v1/forecast.json?key=$key&q=$address&days=$forecast_days&=";

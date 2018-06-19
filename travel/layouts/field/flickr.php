@@ -41,7 +41,7 @@ $doc->addScript('media/plg_fields_travel/js/jquery.magnific-popup.js');
 
 
 /* Fill in the gaps in adress to make a proper call in the url */
-$address = str_replace(" ", "%20", $field->rawvalue);
+$address = JFilterOutput::stringURLSafe($field->rawvalue);
 
 /* How many images should be loaded */
 $imgnum = $field->fieldparams['imgnum'];
